@@ -8,8 +8,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-    volumes:
-      - mongo_data:/data/db
+    # volumes:
+    #   - mongo_data:/data/db
   api:
     build:
       context: .
@@ -33,5 +33,5 @@ services:
     #   - /app/node_modules
     # command: npm run start:dev
 
-volumes:
-  mongo_data:
+# volumes:
+#   mongo_data:

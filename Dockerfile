@@ -3,7 +3,9 @@
 # ---- Base builder ----
 FROM node:20-alpine AS builder
 WORKDIR /app
-ENV NODE_ENV=production
+# IMPORTANT: No establecemos NODE_ENV=production aquí para que se instalen devDependencies (incluye @nestjs/cli)
+# Alternativa sería mantener NODE_ENV=production y usar: npm install --legacy-peer-deps --include=dev
+# Mantengo la forma más clara: sin producción en etapa de build.
 # Install deps separately to leverage layer caching
 COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
 RUN npm install --legacy-peer-deps
