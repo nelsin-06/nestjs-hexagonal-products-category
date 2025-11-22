@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: hexagonal-mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+  api:
+    build:
+      context: .
+      target: production
+    container_name: hexagonal-api
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://root:password@mongo:27017/products_db?authSource=admin
+      NODE_ENV: production
+      API_KEY: 42p8x5tgt3vdyj82VOhRgpCKvgR2dO1k
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+    # Uncomment for live development using dev stage instead of production
+    # build:
+    #   context: .
+    #   target: dev
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    # command: npm run start:dev
+
+volumes:
+  mongo_data:
