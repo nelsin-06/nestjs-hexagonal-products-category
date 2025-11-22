@@ -66,7 +66,7 @@ Para probar rápidamente los endpoints tienes dos opciones:
 1. Archivo local REST Client: `documentation/products.http` (abre en VS Code con la extensión "REST Client" y presiona "Send Request" en cada bloque).
 2. Colección Postman pública: [Hexagonal Category Products](https://www.postman.com/dark-equinox-132990/workspace/hexagonal-category-products/collection/22972674-9d7e075b-a3bd-499b-81bb-ed20a7f055e4?action=share&creator=22972674)
 
-La API Key por defecto ya está incluida en los ejemplos; recuerda rotarla si publicas el servicio.
+La API Key por defecto ya está incluida en los ejemplos.
 
 ## API Key por Defecto
 
@@ -128,9 +128,13 @@ El mapper (`ProductMapper`) mantiene limpio el dominio evitando filtrar campos n
 - Arquitectura Hexagonal: Núcleo estable ante cambios externos.
 - DDD: Entidad rica `Product` con invariantes y reglas derivadas.
 - Inversión de Dependencias: Módulos inyectan abstracciones, no concreciones.
-- BaseRepository no es Factory; combina Repository Pattern + Template Method.
+- BaseRepository; combina Repository Pattern + Template Method.
 - Guard API Key: Protege mutaciones.
 - Interceptor: Punto único para estandarizar respuestas (ampliable para metadatos, correlación, paginado futuro).
+
+### Screaming Architecture (Nombres que gritan el Dominio / Casos de Uso)
+
+Se sigue el principio de *Screaming Architecture*: la estructura de carpetas "grita" qué hace el sistema, no con qué framework está construido. Por eso los directorios de aplicación usan verbos y casos de uso (`create-product`, `find-products`, `update-stock`, `reindex-product`) en lugar de nombres genéricos o técnicos. Este enfoque facilita que un desarrollador nuevo identifique rápidamente las capacidades del dominio y dónde extenderlas.
 
 ## Mejoras Futuras (Roadmap Breve)
 
