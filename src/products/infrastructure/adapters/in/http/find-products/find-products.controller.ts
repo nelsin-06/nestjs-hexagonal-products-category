@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { FindProductsService } from '../../../../../application/find-products/find-products.service';
+import { FindProductsService } from '@src/products/application/find-products/find-products.service';
 import { ProductResponseDto } from './dto/product.response.dto';
 
 @Controller('products')

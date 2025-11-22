@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { IndexingPort } from '../../../../domain/ports/out/external/indexing.port';
+import { IndexingPort } from '@src/products/domain/ports/out/external/indexing.port';
 
 @Injectable()
 export class ExternalIndexingAdapter implements IndexingPort {

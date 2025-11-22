@@ -1,4 +1,4 @@
-import { Product } from '../../../../../../domain/entity/product';
+import { Product } from '@src/products/domain/entity/product';
 
 export class ProductResponseDto {
   id: string;

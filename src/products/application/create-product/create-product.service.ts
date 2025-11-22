@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { ProductRepository } from '../../domain/ports/out/db/product.repository.port';
-import { Product } from '../../domain/entity/product';
-import { BusinessException } from '../../../shared/domain/exceptions/business.exception';
+import { ProductRepository } from '@src/products/domain/ports/out/db/product.repository.port';
+import { Product } from '@src/products/domain/entity/product';
+import { BusinessException } from '@shared/domain/exceptions/business.exception';
 
 @Injectable()
 export class CreateProductService {

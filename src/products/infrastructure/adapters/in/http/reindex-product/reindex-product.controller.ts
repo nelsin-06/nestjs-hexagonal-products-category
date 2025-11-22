@@ -1,5 +1,5 @@
 import { Controller, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
-import { ReindexProductService } from '../../../../../application/reindex-product/reindex-product.service';
+import { ReindexProductService } from '@src/products/application/reindex-product/reindex-product.service';
 
 @Controller('products')
 export class ReindexProductController {

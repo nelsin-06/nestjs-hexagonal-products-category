@@ -1,8 +1,8 @@
 import { Body, Controller, Param, Patch, UseGuards } from '@nestjs/common';
-import { UpdateStockService } from '../../../../../application/update-stock/update-stock.service';
+import { UpdateStockService } from '@src/products/application/update-stock/update-stock.service';
 import { UpdateStockRequestDto } from './dto/update-stock.request.dto';
 import { ProductResponseDto } from '../find-products/dto/product.response.dto';
-import { ApiKeyGuard } from '../../../../../../shared/infrastructure/guards/api-key.guard';
+import { ApiKeyGuard } from '@shared/infrastructure/guards/api-key.guard';
 
 @Controller('products')
 export class UpdateStockController {

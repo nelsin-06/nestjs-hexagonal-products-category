@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { InMemoryBaseRepository } from '../../../../../shared/infrastructure/adapters/out/db/in-memory-base.repository';
-import { ProductRepository } from '../../../../domain/ports/out/db/product.repository.port';
-import { Product } from '../../../../domain/entity/product';
+import { InMemoryBaseRepository } from '@shared/infrastructure/adapters/out/db/in-memory-base.repository';
+import { ProductRepository } from '@src/products/domain/ports/out/db/product.repository.port';
+import { Product } from '@src/products/domain/entity/product';
 
 @Injectable()
 export class InMemoryProductRepository
@@ -18,7 +18,8 @@ export class InMemoryProductRepository
   }
 
   async findBySku(sku: string): Promise<Product | null> {
+    // Método se mantiene async para cumplir contrato de la interfaz aunque sea sincrónico aquí.
     const item = this.items.find((p) => p.sku === sku);
-    return item || null;
+    return Promise.resolve(item || null);
   }
 }

@@ -6,10 +6,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CreateProductService } from '../../../../../application/create-product/create-product.service';
+import { CreateProductService } from '@src/products/application/create-product/create-product.service';
 import { CreateProductRequestDto } from './dto/create-product.request.dto';
 import { ProductResponseDto } from '../find-products/dto/product.response.dto';
-import { ApiKeyGuard } from '../../../../../../shared/infrastructure/guards/api-key.guard';
+import { ApiKeyGuard } from '@shared/infrastructure/guards/api-key.guard';
 
 @Controller('products')
 export class CreateProductController {

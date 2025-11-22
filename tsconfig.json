@@ -24,7 +24,6 @@
       "@config/*": ["src/config/*"],
       "@users/*": ["src/users/*"],
       "@auth/*": ["src/auth/*"],
-      "@reports/*": ["src/reports/*"],
       "@utils/*": ["src/utils/*"],
       "@shared/*": ["src/shared/*"],
     }

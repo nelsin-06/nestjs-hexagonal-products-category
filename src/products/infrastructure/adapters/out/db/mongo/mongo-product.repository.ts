@@ -1,11 +1,11 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ProductRepository } from '../../../../../domain/ports/out/db/product.repository.port';
-import { Product } from '../../../../../domain/entity/product';
+import { ProductRepository } from '@src/products/domain/ports/out/db/product.repository.port';
+import { Product } from '@src/products/domain/entity/product';
 import { ProductDocument, ProductSchemaClass } from './schema/product.schema';
 import { ProductMapper } from './mapper/product.mapper';
-import { MongoBaseRepository } from '../../../../../../shared/infrastructure/adapters/out/db/mongo/mongo-base.repository';
+import { MongoBaseRepository } from '@shared/infrastructure/adapters/out/db/mongo/mongo-base.repository';
 
 @Injectable()
 export class MongoProductRepository

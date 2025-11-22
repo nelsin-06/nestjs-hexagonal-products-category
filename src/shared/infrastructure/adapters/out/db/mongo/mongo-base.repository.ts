@@ -1,5 +1,5 @@
 import { Model, Document } from 'mongoose';
-import { BaseRepository } from '../../../../../domain/ports/out/db/base.repository.port';
+import { BaseRepository } from '@shared/domain/ports/out/db/base.repository.port';
 
 export abstract class MongoBaseRepository<
   DomainEntity extends { id: string },
