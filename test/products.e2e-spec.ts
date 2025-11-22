@@ -103,4 +103,29 @@ describe('ProductsController (e2e)', () => {
         expect((res.body as ProductDTO).stock).toBe(100);
       });
   });
+
+  it('/products/:id/reindex (POST) - 202 Reindex Product', async () => {
+    const productsRes = await request(server).get('/products');
+    const products = productsRes.body as ProductDTO[];
+    const product = products[0];
+    return request(server)
+      .post(`/products/${product.id}/reindex`)
+      .expect(202)
+      .expect((res) => {
+        const body = res.body as { message?: string };
+        expect(body.message).toBe('Reindexing started');
+      });
+  });
+
+  it('/products/:id/reindex (POST) - 404 Not Found', async () => {
+    return request(server)
+      .post('/products/does-not-exist/reindex')
+      .expect(404)
+      .expect((res) => {
+        const body = res.body as { error?: string; message?: string };
+        expect((body.error || body.message || '').toLowerCase()).toMatch(
+          /not found/,
+        );
+      });
+  });
 });

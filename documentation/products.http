@@ -1,0 +1,70 @@
+@host = http://localhost:3000
+@version = v1
+@apiKey = 42p8x5tgt3vdyj82VOhRgpCKvgR2dO1k
+# Puedes cambiar @host a http://127.0.0.1:3000 o al dominio del contenedor.
+# @version está incluido por si más adelante prefijas rutas (ej: /api/v1); hoy las rutas no usan /api, ajusta si agregas un GlobalPrefix.
+@productId = 1
+### Obtener todos los productos (GET /products)
+GET {{host}}/products
+Accept: application/json
+
+### Crear producto (POST /products) requiere x-api-key
+# Cambia SKU para evitar conflicto 409
+POST {{host}}/products
+x-api-key: {{apiKey}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Producto Demo",
+  "sku": "SKU-{{newSku}}",
+  "price": 19.99,
+  "stock": 25
+}
+
+### Variable dinámica newSku (REST Client syntax)
+@newSku = {{$timestamp}}
+
+### Crear producto duplicado para probar 409
+POST {{host}}/products
+x-api-key: {{apiKey}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Producto Duplicado",
+  "sku": "TAZ-001",
+  "price": 9.99,
+  "stock": 10
+}
+
+### Actualizar stock (PATCH /products/:id/stock)
+# Primero obtén productos y toma un id (ej: "1" de los seed) y reemplaza {{productId}}
+PATCH {{host}}/products/{{productId}}/stock
+x-api-key: {{apiKey}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "stock": 100
+}
+
+### Reindexar producto (POST /products/:id/reindex)
+# Este endpoint actualmente no exige API Key en el código; añade si luego proteges.
+POST {{host}}/products/{{productId}}/reindex
+Accept: application/json
+
+### Ejemplo de petición inválida (stock negativo) para ver BusinessException
+PATCH {{host}}/products/{{productId}}/stock
+x-api-key: {{apiKey}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "stock": -5
+}
+
+### Notas
+# - Usa VS Code extension REST Client (humao.rest-client) para ejecutar cada bloque.
+# - Selecciona un bloque y haz "Send Request".
+# - @newSku se recalcula con timestamp para SKU único.
